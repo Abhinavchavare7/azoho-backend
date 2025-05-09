@@ -9,7 +9,7 @@ export class AuthService {
 
   async signup(email: string, password: string, fullName: string) {
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user:any = await this.usersService.create({ email, password: hashedPassword, fullName });
+    const user:any = await this.usersService.create({ email, password: hashedPassword, fullName,isActive: true });
     return { message: 'Signup successful', userId: user._id };
   }
 
@@ -21,8 +21,7 @@ export class AuthService {
     if (!passwordMatch) throw new UnauthorizedException('Invalid credentials');
 
     const token = this.jwtService.sign(
-      { sub: user._id, email: user.email },
-      { expiresIn: '30s' } // ⏱️ Token will expire in 30 seconds
+      { sub: user._id, email: user.email }, // ⏱️ Token will expire in 3600 seconds
     );  return { access_token: token };
   }
 }

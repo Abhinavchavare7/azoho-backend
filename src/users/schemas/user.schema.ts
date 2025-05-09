@@ -13,6 +13,9 @@ export class User {
 
   @Prop()
   fullName: string;
+  
+  @Prop()
+  isActive: boolean;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
