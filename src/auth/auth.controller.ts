@@ -23,7 +23,7 @@ export class AuthController {
   @Get('me')
   async getMe(@Req() req: Request) {
     console.log('User ID: Auth Me La26', req); // Debugging line
-    const userId = (req as any).user.sub; // user is attached by the JwtAuthGuard
+    const userId = (req as any).user.userId; // user is attached by the JwtAuthGuard
   console.log('User ID: Auth Me La26', userId); // Debugging line
     const user = await this.userService.findById(userId);
     console.log('User: Auth Me La28', user); // Debugging line

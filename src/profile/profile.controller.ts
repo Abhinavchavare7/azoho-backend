@@ -12,16 +12,16 @@ export class ProfileController {
   @Post()
   async create(@Body() body: any, @Req() req: Request) {
     // console.log('Request Body: L10', req.user); // Debugging line
-    const user = req.user as { sub: string };
-    console.log('User ID: L15', user.sub); // Debugging line
-    return this.profileService.createProfile(body, user.sub);
+    const user = req.user as { userId: string };
+    console.log('User ID: L15', user.userId); // Debugging line
+    return this.profileService.createProfile(body, user.userId);
   }
 
   @Get()
   async getMyProfile(@Req() req: Request) {
-    const user = req.user as { sub: string };
-    console.log('User ID: L21', user.sub); // Debugging line
-    let data= await this.profileService.getProfileByUserId(user.sub);
+    const user = req.user as { userId: string };
+    console.log('User ID: L21', user.userId); // Debugging line
+    let data= await this.profileService.getProfileByUserId(user.userId);
     console.log('Data: Lr23', data); // Debugging line
     return data;
   }

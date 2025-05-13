@@ -21,7 +21,7 @@ export class AuthService {
     if (!passwordMatch) throw new UnauthorizedException('Invalid credentials');
 
     const token = this.jwtService.sign(
-      { sub: user._id, email: user.email }, // ⏱️ Token will expire in 3600 seconds
+      { userId: user._id, email: user.email }, // ⏱️ Token will expire in 3600 seconds
     );  return { access_token: token };
   }
 }

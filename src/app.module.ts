@@ -10,7 +10,7 @@ import { ProfileModule } from './profile/profile.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }), // ✅ loads .env automatically
-    MongooseModule.forRoot(process.env.MONGODB_URI || 'mongodb://localhost:27017/azoho', {
+    MongooseModule.forRoot(process.env.MONGODB_URI || 'mongodb://mongo:27017/azoho', {
       dbName: 'azoho', // ✅ optional, sets DB name
     }), AuthModule, UsersModule, ProfileModule,
   ],
