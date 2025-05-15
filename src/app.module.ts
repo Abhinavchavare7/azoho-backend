@@ -18,4 +18,4 @@ import { ProfileModule } from './profile/profile.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

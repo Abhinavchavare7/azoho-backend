@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile # Refers to the Dockerfile we created above
+    container_name: nest-backend
+    ports:
+      - "3000:3000" # Expose port 3000 for your backend
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/azoho # MongoDB URI (container name used here)
+      - JWT_SECRET=supersecretkey
+    depends_on:
+      - mongo # Wait for MongoDB to start first
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017" # Expose MongoDB port (useful for local testing)
+    volumes:
+      - mongo-data:/data/db # Persist MongoDB data in a volume
+    networks:
+      - app-network
+
+volumes:
+  mongo-data:
+    # Define volume for MongoDB data persistence
+
+networks:
+  app-network: # Define a network for the containers to communicate
