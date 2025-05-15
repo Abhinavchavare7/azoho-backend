@@ -18,10 +18,15 @@ export class ProfileService {
     return newProfile.save();
   }
 
-  async getProfileByUserId(userId: string) {
+  async getProfileByUserId(userId: string):Promise<Profile | null> {
     console.log('User ID: Lg23', userId); // Debugging line
-    const profile = await this.profileModel.findOne({ userId: new Types.ObjectId(userId) }).exec();
-    console.log('Profile Data: Lg25', profile); // Debugging line
-    return profile;
+    const profile = await this.profileModel.findOne({ userId: new Types.ObjectId(userId) }).lean();// Debugging line
+ if (!profile) return null;
+
+  // Convert ObjectId to string
+  return {
+    ...profile,
+    userId: profile.userId.toString(),
+  };
   }
 }

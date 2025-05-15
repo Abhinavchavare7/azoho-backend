@@ -87,7 +87,7 @@ class VehiclePassDetails {
 @Schema({ timestamps: true })
 export class Profile {
   @Prop({ type: Types.ObjectId, ref: 'User', required: true })
-  userId: Types.ObjectId;
+  userId:string
 
   @Prop({ type: BasicInfo })
   basicInfo: BasicInfo;
